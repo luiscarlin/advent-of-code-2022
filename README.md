@@ -1,5 +1,8 @@
 ## Advent of Code 2022
 
+My JS/ TS solutions to [Advent of Code 2022](https://adventofcode.com/2022)
+using [Deno](https://deno.land/) as a runtime
+
 ## Get Started
 
 ```bash
