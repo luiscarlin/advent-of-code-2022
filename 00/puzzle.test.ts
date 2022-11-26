@@ -1,4 +1,4 @@
-import { assert } from "https://deno.land/std@0.165.0/testing/asserts.ts";
+import { assert } from "/deps.ts";
 import { part1 } from "./puzzle.ts";
 
 Deno.test({
