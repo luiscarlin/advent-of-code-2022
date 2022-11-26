@@ -10,11 +10,11 @@ using [Deno](https://deno.land/) as a runtime
 brew install deno
 
 # run the solution for a day with puzzle input
-deno run -A day00/day00.ts ./day00/input.txt
+deno run -A 00/puzzle.ts 00/puzzle.in
 
 # run the solution for a day with sample input
-deno run -A day00/day00.ts ./day00/sample1.txt
+deno run -A 00/puzzle.ts 00/puzzle.sample
 
 # run the tests for a day
-deno test -A day00
+deno test -A 00
 ```

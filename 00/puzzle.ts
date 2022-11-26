@@ -6,7 +6,7 @@ export const part2 = (input: string) => {
   return input.split("\n").length;
 };
 
-const main = () => {
+export const main = () => {
   const [file] = Deno.args;
 
   const input = Deno.readTextFileSync(file);

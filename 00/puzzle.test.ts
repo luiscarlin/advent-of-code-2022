@@ -1,5 +1,5 @@
 import { assert } from "https://deno.land/std@0.165.0/testing/asserts.ts";
-import { part1 } from "./day00.ts";
+import { part1 } from "./puzzle.ts";
 
 Deno.test({
   name: "part 1",
