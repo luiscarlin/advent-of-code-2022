@@ -9,6 +9,9 @@ using [Deno](https://deno.land/) as a runtime
 # install deno (https://deno.land/manual@v1.28.1/getting_started/installation)
 brew install deno
 
+# start a new day
+deno run -A init.ts --day 02
+
 # run the solution for a day with puzzle input
 deno run -A 00/puzzle.ts 00/puzzle.in
 
