@@ -1,48 +1,19 @@
+import { sum } from "https://deno.land/x/lodash@4.17.15-es/lodash.js";
+
 export const part1 = (input: string) => {
-  const list = input.split("\n");
-
-  let maxCaloriesSeen = 0;
-  let elfSum = 0;
-
-  list.forEach((item, i) => {
-    if (!item || i === list.length - 1) {
-      if (elfSum > maxCaloriesSeen) {
-        maxCaloriesSeen = elfSum;
-      }
-      elfSum = 0;
-    } else {
-      elfSum += Number(item);
-    }
-  });
-
-  return maxCaloriesSeen;
+  return Math.max(
+    ...input.split("\n\n").map((elfCalories) =>
+      sum(elfCalories.split("\n").map(Number))
+    ),
+  );
 };
 
 export const part2 = (input: string) => {
-  const list = input.split("\n");
-
-  const totalCaloriesByElf: number[] = [];
-
-  let currentSum = 0;
-
-  list.forEach((item, i) => {
-    if (!item) {
-      totalCaloriesByElf.push(currentSum);
-      currentSum = 0;
-    } else {
-      currentSum += Number(item);
-
-      if (i === list.length - 1) {
-        totalCaloriesByElf.push(currentSum);
-      }
-    }
-  });
-
-  const [first, second, third, ..._rest] = totalCaloriesByElf.sort((a, b) =>
-    b - a
+  const caloriesByElf = input.split("\n\n").map((elfCalories) =>
+    sum(elfCalories.split("\n").map(Number))
   );
 
-  return first + second + third;
+  return sum(caloriesByElf.sort((a, b) => b - a).slice(0, 3));
 };
 
 export const main = () => {
