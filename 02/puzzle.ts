@@ -1,4 +1,3 @@
-import { _format } from "https://deno.land/std@0.166.0/path/_util.ts";
 import { sum } from "https://deno.land/x/lodash@4.17.15-es/lodash.js";
 
 // A rock
