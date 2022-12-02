@@ -5,38 +5,41 @@ const calculatePoints = (other: string, me: string) => {
   let points = 0;
   if (other === "A") {
     if (me === "X") {
-      points = 3 + 1;
+      points = 3;
     }
     if (me === "Y") {
-      points = 6 + 2;
+      points = 6;
     }
     if (me === "Z") {
-      points = 0 + 3;
+      points = 0;
     }
   }
   if (other === "B") {
     if (me === "X") {
-      points = 0 + 1;
+      points = 0;
     }
     if (me === "Y") {
-      points = 3 + 2;
+      points = 3;
     }
     if (me === "Z") {
-      points = 6 + 3;
+      points = 6;
     }
   }
 
   if (other === "C") {
     if (me === "X") {
-      points = 6 + 1;
+      points = 6;
     }
     if (me === "Y") {
-      points = 0 + 2;
+      points = 0;
     }
     if (me === "Z") {
-      points = 3 + 3;
+      points = 3;
     }
   }
+
+  points += me === "X" ? 1 : me === "Y" ? 2 : 3;
+
   return points;
 };
 
@@ -54,8 +57,6 @@ export const part1 = (input: string) => {
   const allPoints = [];
   for (const round of lines) {
     const [other, me] = round.split(" ");
-
-    calculatePoints(other, me);
 
     allPoints.push(calculatePoints(other, me));
   }
