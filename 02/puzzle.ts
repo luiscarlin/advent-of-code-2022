@@ -126,8 +126,6 @@ export const part2 = (input: string) => {
       }
     }
 
-    calculatePoints(other, me);
-
     allPoints.push(calculatePoints(other, me));
   }
   return sum(allPoints);
