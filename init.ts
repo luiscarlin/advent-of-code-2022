@@ -1,5 +1,5 @@
 import yargs from "https://cdn.deno.land/yargs/versions/yargs-v16.2.1-deno/raw/deno.ts";
-import { brightGreen, brightRed, copySync, difference, keys } from "./deps.ts";
+import { brightGreen, brightRed, copySync, lodash } from "./deps.ts";
 
 interface Arguments {
   day: string;
@@ -11,7 +11,10 @@ const errorMessages: { [k: string]: string } = {
   day: "Provide the day number using --day [-d] parameter",
 };
 
-const errors: string[] = difference(keys(errorMessages), keys(inputArgs));
+const errors: string[] = lodash.difference(
+  lodash.keys(errorMessages),
+  lodash.keys(inputArgs),
+);
 
 if (errors.length > 0) {
   errors.forEach((error) => console.log(errorMessages[error]));

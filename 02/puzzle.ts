@@ -1,4 +1,4 @@
-import { sum } from "/deps.ts";
+import { lodash } from "/deps.ts";
 
 // A rock
 // B paper
@@ -39,13 +39,13 @@ const conversion: { [key: string]: string } = {
 export const part1 = (input: string) => {
   const lines = input.split("\n");
 
-  return sum(lines.map((round) => points[round]));
+  return lodash.sum(lines.map((round) => points[round]));
 };
 
 export const part2 = (input: string) => {
   const lines = input.split("\n");
 
-  return sum(lines.map((round) => points[conversion[round]]));
+  return lodash.sum(lines.map((round) => points[conversion[round]]));
 };
 
 export const main = () => {

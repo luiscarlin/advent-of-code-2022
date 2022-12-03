@@ -1,19 +1,19 @@
-import { sum } from "/deps.ts";
+import { lodash } from "/deps.ts";
 
 export const part1 = (input: string) => {
   return Math.max(
     ...input.split("\n\n").map((elfCalories) =>
-      sum(elfCalories.split("\n").map(Number))
+      lodash.sum(elfCalories.split("\n").map(Number))
     ),
   );
 };
 
 export const part2 = (input: string) => {
   const caloriesByElf = input.split("\n\n").map((elfCalories) =>
-    sum(elfCalories.split("\n").map(Number))
+    lodash.sum(elfCalories.split("\n").map(Number))
   );
 
-  return sum(caloriesByElf.sort((a, b) => b - a).slice(0, 3));
+  return lodash.sum(caloriesByElf.sort((a, b) => b - a).slice(0, 3));
 };
 
 export const main = () => {

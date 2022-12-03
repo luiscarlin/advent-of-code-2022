@@ -1,4 +1,4 @@
-import { assert } from "/deps.ts";
+import { asserts } from "/deps.ts";
 import { part1, part2 } from "./puzzle.ts";
 
 Deno.test({
@@ -15,7 +15,7 @@ Deno.test({
     260
     263`);
 
-    assert(answer == 10);
+    asserts.assertEquals(answer, 10);
   },
 });
 
@@ -33,6 +33,6 @@ Deno.test({
     260
     263`);
 
-    assert(answer == 10);
+    asserts.assertEquals(answer, 10);
   },
 });
