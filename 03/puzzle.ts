@@ -1,21 +1,16 @@
 import { lodash } from "/deps.ts";
 
-const isLowerCase = (letter: string) => {
-  if (
-    letter.toUpperCase() === letter &&
-    letter !== letter.toLowerCase()
-  ) {
-    return false;
-  } else {
-    // 👉️ this runs
-    return true;
-  }
-};
+const isLowerCase = (letter: string) =>
+  letter.toLowerCase() === letter &&
+  letter !== letter.toUpperCase();
+
+const convertToASCII = (char: string) => char.charCodeAt(0);
+
+const getCharPriority = (char: string) =>
+  convertToASCII(char) - (isLowerCase(char) ? 96 : 38);
 
 export const part1 = (input: string) => {
   const lines = input.split("\n");
-
-  // start coding here
 
   const repeated = [];
 
@@ -26,13 +21,8 @@ export const part1 = (input: string) => {
     repeated.push(...lodash.intersection(first, second));
   }
 
-  // a: 97
-  //65  A
-
   return lodash.sum(
-    repeated.map((char) =>
-      isLowerCase(char) ? char.charCodeAt(0) - 96 : char.charCodeAt(0) - 38
-    ),
+    repeated.map(getCharPriority),
   );
 };
 
@@ -50,9 +40,7 @@ export const part2 = (input: string) => {
   );
 
   return lodash.sum(
-    repeated.map((char) =>
-      isLowerCase(char) ? char.charCodeAt(0) - 96 : char.charCodeAt(0) - 38
-    ),
+    repeated.map(getCharPriority),
   );
 };
 
