@@ -1,4 +1,4 @@
-import { sum } from "https://deno.land/x/lodash@4.17.15-es/lodash.js";
+import { sum } from "/deps.ts";
 
 export const part1 = (input: string) => {
   return Math.max(

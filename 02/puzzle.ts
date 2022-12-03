@@ -1,4 +1,4 @@
-import { sum } from "https://deno.land/x/lodash@4.17.15-es/lodash.js";
+import { sum } from "/deps.ts";
 
 // A rock
 // B paper

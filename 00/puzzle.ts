@@ -1,9 +1,17 @@
 export const part1 = (input: string) => {
-  return input.split("\n").length;
+  const lines = input.split("\n");
+
+  // start coding here
+
+  return lines.length;
 };
 
 export const part2 = (input: string) => {
-  return input.split("\n").length;
+  const lines = input.split("\n");
+
+  // start coding here
+
+  return lines.length;
 };
 
 export const main = () => {
