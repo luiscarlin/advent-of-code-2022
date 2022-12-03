@@ -1,4 +1,4 @@
-import { lodash } from "/deps.ts";
+import { asserts, lodash } from "/deps.ts";
 
 const isLowerCase = (letter: string) =>
   letter.toLowerCase() === letter &&
@@ -10,20 +10,17 @@ const getCharPriority = (char: string) =>
   convertToASCII(char) - (isLowerCase(char) ? 96 : 38);
 
 export const part1 = (input: string) => {
-  const lines = input.split("\n");
+  return input.split("\n").reduce((acc, rucksack) => {
+    const [left, right] = [
+      rucksack.slice(0, rucksack.length / 2),
+      rucksack.slice(rucksack.length / 2),
+    ];
 
-  const repeated = [];
+    const repeatedChar = left.split("").find((char) => right.includes(char));
+    asserts.assertExists(repeatedChar);
 
-  for (const line of lines) {
-    const first = line.slice(0, line.length / 2).split("");
-    const second = line.slice(line.length / 2).split("");
-
-    repeated.push(...lodash.intersection(first, second));
-  }
-
-  return lodash.sum(
-    repeated.map(getCharPriority),
-  );
+    return acc + getCharPriority(repeatedChar);
+  }, 0);
 };
 
 export const part2 = (input: string) => {
