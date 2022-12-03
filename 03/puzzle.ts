@@ -24,21 +24,18 @@ export const part1 = (input: string) => {
 };
 
 export const part2 = (input: string) => {
-  const lines = input.split("\n");
+  const rucksacks = input.split("\n");
 
-  const chunks = lodash.chunk(lines, 3, null);
+  const groups: string[][] = lodash.chunk(rucksacks, 3, null);
 
-  const repeated = chunks.flatMap((chunk) =>
-    lodash.intersection(
-      chunk[0].split(""),
-      chunk[1].split(""),
-      chunk[2].split(""),
-    )
-  );
+  return groups.reduce((acc, group) => {
+    const repeatedChar = group[0].split("").find((char) =>
+      group[1].includes(char) && group[2].includes(char)
+    );
+    asserts.assertExists(repeatedChar);
 
-  return lodash.sum(
-    repeated.map(getCharPriority),
-  );
+    return acc + getCharPriority(repeatedChar);
+  }, 0);
 };
 
 export const main = () => {
