@@ -1,5 +1,5 @@
 import yargs from "https://cdn.deno.land/yargs/versions/yargs-v16.2.1-deno/raw/deno.ts";
-import { brightGreen, brightRed, copySync, lodash } from "./deps.ts";
+import { colors, copySync, lodash } from "./deps.ts";
 
 interface Arguments {
   day: string;
@@ -28,8 +28,14 @@ try {
   copySync("./00", inputArgs.day);
 } catch (e) {
   console.log(e.message);
-  console.log(brightRed("Exiting"));
+  console.log(colors.brightRed("Exiting"));
   Deno.exit(1);
 }
 
-console.log(brightGreen("All Done"));
+console.log(colors.brightGreen("All Done! "));
+console.log(colors.bgBlue(" Next step "));
+console.log(
+  colors.brightBlue(
+    `deno run -A --watch ${inputArgs.day}/puzzle.ts ${inputArgs.day}/puzzle.in`,
+  ),
+);
