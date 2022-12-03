@@ -20,4 +20,7 @@ deno run -A 00/puzzle.ts 00/puzzle.sample
 
 # run the tests for a day
 deno test -A 00
+
+# run with watch
+deno run -A --watch 02/puzzle.ts 02/puzzle.in
 ```
