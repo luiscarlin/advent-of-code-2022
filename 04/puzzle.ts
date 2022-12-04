@@ -1,18 +1,52 @@
+import { lodash } from "/deps.ts";
+
 export const part1 = (input: string) => {
   const lines = input.split("\n");
 
-  // start coding here
-  console.log("hello");
+  let count = 0;
 
-  return lines.length;
+  for (const line of lines) {
+    const [left, right] = line.split(",");
+
+    const [startLeft, endLeft] = left.split("-").map(Number);
+    const [startRight, endRight] = right.split("-").map(Number);
+
+    if (startLeft <= startRight && endLeft >= endRight) {
+      count++;
+      continue;
+    }
+
+    if (startLeft >= startRight && endLeft <= endRight) {
+      count++;
+      continue;
+    }
+  }
+
+  return count;
 };
 
 export const part2 = (input: string) => {
   const lines = input.split("\n");
 
-  // start coding here
+  let count = 0;
 
-  return lines.length;
+  for (const line of lines) {
+    const [left, right] = line.split(",");
+
+    const [startLeft, endLeft] = left.split("-").map(Number);
+    const [startRight, endRight] = right.split("-").map(Number);
+
+    const leftList = lodash.range(startLeft, endLeft + 1);
+    const rightList = lodash.range(startRight, endRight + 1);
+
+    const intersect = lodash.intersection(leftList, rightList);
+
+    if (intersect.length > 0) {
+      count++;
+    }
+  }
+
+  return count;
 };
 
 export const main = () => {
