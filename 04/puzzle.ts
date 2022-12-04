@@ -1,5 +1,3 @@
-import { lodash } from "/deps.ts";
-
 export const part1 = (input: string) => {
   const lines = input.split("\n");
 
@@ -22,25 +20,20 @@ export const part1 = (input: string) => {
 export const part2 = (input: string) => {
   const lines = input.split("\n");
 
-  let count = 0;
+  return lines.reduce((count, line) => {
+    const [[startLeft, endLeft], [startRight, endRight]] = line.split(",").map(
+      (pair) => pair.split("-").map(Number),
+    );
 
-  for (const line of lines) {
-    const [left, right] = line.split(",");
-
-    const [startLeft, endLeft] = left.split("-").map(Number);
-    const [startRight, endRight] = right.split("-").map(Number);
-
-    const leftList = lodash.range(startLeft, endLeft + 1);
-    const rightList = lodash.range(startRight, endRight + 1);
-
-    const intersect = lodash.intersection(leftList, rightList);
-
-    if (intersect.length > 0) {
-      count++;
+    if (
+      startLeft <= startRight && endLeft >= startRight ||
+      startRight <= startLeft && endRight >= startLeft
+    ) {
+      return count + 1;
     }
-  }
 
-  return count;
+    return count;
+  }, 0);
 };
 
 export const main = () => {
