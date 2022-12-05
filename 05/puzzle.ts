@@ -1,6 +1,8 @@
 import { asserts } from "../deps.ts";
 
-export const part1 = (input: string) => {
+const getData = (
+  input: string,
+): [{ [key: number]: string[] }, number[][]] => {
   const [crates, moves] = input.split("\n\n").map((x) => x.split("\n"));
 
   const stacks: { [key: number]: string[] } = {};
@@ -19,7 +21,12 @@ export const part1 = (input: string) => {
     });
   });
 
-  const instructions = moves.map((line) => line.match(/\d+/g));
+  const instructions = moves.map((line) => line.match(/\d+/g)?.map(Number));
+
+  return [stacks, instructions as number[][]];
+};
+export const part1 = (input: string) => {
+  const [stacks, instructions] = getData(input);
 
   instructions.forEach(([quantity, from, to]) => {
     for (let i = 0; i < quantity; i++) {
@@ -34,30 +41,12 @@ export const part1 = (input: string) => {
 };
 
 export const part2 = (input: string) => {
-  const [crates, moves] = input.split("\n\n").map((x) => x.split("\n"));
-
-  const stacks: { [key: number]: string[] } = {};
-
-  crates.slice(0, -1).forEach((line) => {
-    const replaced = line.replaceAll("    ", "[ ]");
-
-    const row = replaced.match(/\[( |[A-Z])\]/g)?.map((match) => match[1]);
-
-    row?.forEach((letter, i) => {
-      if (letter !== " ") {
-        stacks[i + 1]
-          ? stacks[i + 1].unshift(letter)
-          : stacks[i + 1] = [letter];
-      }
-    });
-  });
-
-  const instructions = moves.map((line) => line.match(/\d+/g));
+  const [stacks, instructions] = getData(input);
 
   instructions.forEach(([quantity, from, to]) => {
     const [start, end] = [
-      stacks[from].slice(0, -quantity),
-      stacks[from].slice(-quantity),
+      stacks[from].slice(0, -1 * quantity),
+      stacks[from].slice(-1 * quantity),
     ];
 
     stacks[from] = start;
