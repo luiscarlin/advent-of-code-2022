@@ -1,11 +1,15 @@
 import { asserts } from "../deps.ts";
 
+interface IStack {
+  [key: number]: string[];
+}
+
 const getData = (
   input: string,
-): [{ [key: number]: string[] }, number[][]] => {
+): [IStack, number[][]] => {
   const [crates, moves] = input.split("\n\n").map((x) => x.split("\n"));
 
-  const stacks: { [key: number]: string[] } = {};
+  const stacks: IStack = {};
 
   crates.slice(0, -1).forEach((line) => {
     const replaced = line.replaceAll("    ", "[ ]");
