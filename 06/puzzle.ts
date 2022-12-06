@@ -3,7 +3,7 @@ const getStartOfPacket = (input: string, messageLength: number) => {
 
   let startOfPacket = 0;
 
-  for (const i of [...Array(text.length).keys()]) {
+  for (let i = 0; i < text.length; i++) {
     const subList = text.slice(i, messageLength + i);
 
     if (subList.length !== messageLength) {
