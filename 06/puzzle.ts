@@ -4,13 +4,13 @@ const getStartOfPacket = (input: string, messageLength: number) => {
   let startOfPacket = 0;
 
   for (let i = 0; i < text.length; i++) {
-    const subList = text.slice(i, messageLength + i);
+    const slidingWindow = text.slice(i, messageLength + i);
 
-    if (subList.length !== messageLength) {
+    if (slidingWindow.length !== messageLength) {
       break;
     }
 
-    if (new Set(subList).size === messageLength) {
+    if (new Set(slidingWindow).size === messageLength) {
       startOfPacket = i + messageLength;
       break;
     }
