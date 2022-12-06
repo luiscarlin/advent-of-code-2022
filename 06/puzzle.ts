@@ -17,7 +17,9 @@ export const part2 = (input: string) => {
 export const main = () => {
   const [file] = Deno.args;
 
-  const input = Deno.readTextFileSync(file);
+  const input = Deno.readTextFileSync(
+    file || `${new URL(".", import.meta.url).pathname}puzzle.in`,
+  );
 
   console.log("part1", part1(input));
   console.log("part2", part2(input));
