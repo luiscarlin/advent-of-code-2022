@@ -1,53 +1,26 @@
-import { lodash } from "/deps.ts";
-export const part1 = (input: string) => {
+const getStartOfPacket = (input: string, messageLength: number) => {
   const text = input.split("");
 
-  let index = 0;
+  let startOfPacket = 0;
 
-  for (const i of lodash.range(text.length)) {
-    const subList = text.slice(i, 4 + i);
+  for (const i of [...Array(text.length).keys()]) {
+    const subList = text.slice(i, messageLength + i);
 
-    if (subList.length !== 4) {
+    if (subList.length !== messageLength) {
       break;
     }
 
-    const allUnque = subList.every((c, index) =>
-      ![...subList.slice(0, index), ...subList.slice(index + 1)].includes(c)
-    );
-
-    if (allUnque) {
-      index = i + 4;
+    if (new Set(subList).size === messageLength) {
+      startOfPacket = i + messageLength;
       break;
     }
   }
 
-  return index;
+  return startOfPacket;
 };
+export const part1 = (input: string) => getStartOfPacket(input, 4);
 
-export const part2 = (input: string) => {
-  const text = input.split("");
-
-  let index = 0;
-
-  for (const i of lodash.range(text.length)) {
-    const subList = text.slice(i, 14 + i);
-
-    if (subList.length !== 14) {
-      break;
-    }
-
-    const allUnque = subList.every((c, index) =>
-      ![...subList.slice(0, index), ...subList.slice(index + 1)].includes(c)
-    );
-
-    if (allUnque) {
-      index = i + 14;
-      break;
-    }
-  }
-
-  return index;
-};
+export const part2 = (input: string) => getStartOfPacket(input, 14);
 
 export const main = () => {
   const [file] = Deno.args;
