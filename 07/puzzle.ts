@@ -44,18 +44,16 @@ export const part1 = (input: string) => {
 
   // traverse tree
 
-  console.log(tree);
+  // console.log(tree);
 
   // return;
 
   const cache = {};
 
-  const getSize = (dir: string) => {
+  function getSize(dir: string) {
     if (cache[dir]) {
       return cache[dir];
     }
-
-    console.log(dir);
 
     let dirSize = 0;
 
@@ -73,17 +71,13 @@ export const part1 = (input: string) => {
     cache[dir] = dirSize;
 
     return dirSize;
-  };
+  }
 
-  console.log(cache);
-
-  const sizes = {};
+  getSize("/");
 
   return lodash.sum(
-    Object.keys(tree).map(getSize).filter((folder) => folder <= 100000),
+    Object.values(cache).filter((folder) => folder <= 100000),
   );
-
-  // return getSize("/");
 };
 
 export const part2 = (input: string) => {
