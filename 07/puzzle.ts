@@ -73,7 +73,17 @@ export const part1 = (input: string) => {
     return dirSize;
   }
 
-  getSize("/");
+  const rootSize = getSize("/");
+
+  const unusedSpace = 70000000 - rootSize;
+
+  const sizeNeededToRun = 30000000 - unusedSpace;
+
+  // console.log(sizeNeededToRun);
+
+  console.log(
+    lodash.min(Object.values(cache).filter((dir) => dir > sizeNeededToRun)),
+  );
 
   return lodash.sum(
     Object.values(cache).filter((folder) => folder <= 100000),
