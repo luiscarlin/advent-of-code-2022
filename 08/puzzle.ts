@@ -41,8 +41,6 @@ export const part1 = (input: string) => {
 export const part2 = (input: string) => {
   const grid = input.split("\n").map((r) => r.split("").map(Number));
 
-  let numVisible = 2 * grid.length + 2 * (grid[0].length - 2);
-
   let highestScenicScore = 0;
 
   for (let row = 0; row < grid.length; row++) {
@@ -69,11 +67,7 @@ export const part2 = (input: string) => {
       const numVisibleTrees = allTreesToEdge.map((treesInLine) => {
         const index = treesInLine.findIndex((tree) => tree >= grid[row][col]);
 
-        if (index === -1) {
-          return treesInLine.length;
-        }
-
-        return index + 1;
+        return index === -1 ? treesInLine.length : index + 1;
       });
 
       const scenicScore = numVisibleTrees.reduce((acc, num) => acc *= num, 1);
