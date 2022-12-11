@@ -25,7 +25,7 @@ if (errors.length > 0) {
 }
 
 try {
-  copySync("./00", inputArgs.day);
+  copySync("./00", `${inputArgs.day}`);
 } catch (e) {
   console.log(e.message);
   console.log(colors.brightRed("Exiting"));
