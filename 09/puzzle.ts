@@ -38,11 +38,11 @@ export const part1 = (input: string) => {
     L: [-1, 0],
   };
 
-  console.log("== initial state ==");
-  printGrid(hPos, tPos);
+  // console.log("== initial state ==");
+  // printGrid(hPos, tPos); // debug
 
   for (const [dir, steps] of lines) {
-    console.log("==", dir, steps, "==");
+    // console.log("==", dir, steps, "==");
 
     for (let i = 0; i < Number(steps); i++) {
       hPos = [hPos[0] + dxdy[dir][0], hPos[1] + dxdy[dir][1]];
@@ -56,39 +56,40 @@ export const part1 = (input: string) => {
         (Math.abs(hPos[0] - tPos[0]) > 1);
 
       // if x and y are off by one, move in that direction
-      const shouldMoveDiagonally = (Math.abs(hPos[0] - tPos[0]) > 1) &&
-        (Math.abs(hPos[1] - tPos[1]) > 1);
-
-      const nextToEachOther = (Math.abs(hPos[0] - tPos[0]) == 1) ||
-        (Math.abs(hPos[1] - tPos[1]) == 1);
+      const shouldMoveDiagonally = ((Math.abs(hPos[0] - tPos[0]) === 2) &&
+        (Math.abs(hPos[1] - tPos[1]) === 1)) ||
+        ((Math.abs(hPos[1] - tPos[1]) === 2) &&
+          (Math.abs(hPos[0] - tPos[0]) === 1));
 
       if (shouldMoveVertically) {
         tPos[1] = tPos[1] + 1 * (hPos[1] - tPos[1] > 0 ? 1 : -1);
       } else if (shouldMoveHorizontally) {
         tPos[0] = tPos[0] + 1 * (hPos[0] - tPos[0] > 0 ? 1 : -1);
       } else if (shouldMoveDiagonally) {
-        console.log("should move diagnoally");
-      } else if (nextToEachOther) {
-        console.log("next to each toher");
-      } else {
-        console.log("should not have gotten here");
+        // if the y is off by two, move t to match the x and move y closer
+        if (Math.abs(hPos[1] - tPos[1]) === 2) {
+          tPos[0] = hPos[0];
+          tPos[1] = tPos[1] + 1 * (hPos[1] - tPos[1] > 0 ? 1 : -1);
+        } else if (Math.abs(hPos[0] - tPos[0]) === 2) {
+          // if the x is off by two, move t to match the y and move y closer
+
+          tPos[1] = hPos[1];
+          tPos[0] = tPos[0] + 1 * (hPos[0] - tPos[0] > 0 ? 1 : -1);
+        } else {
+          console.log("how did you get here");
+        }
       }
 
-      tPosHistory.add(tPos);
+      tPosHistory.add(JSON.stringify(tPos));
     }
 
-    printGrid(hPos, tPos);
+    // printGrid(hPos, tPos); // for debug
   }
-
-  // start coding here
-
-  return lines.length;
+  return tPosHistory.size;
 };
 
 export const part2 = (input: string) => {
   const lines = input.split("\n");
-
-  // start coding here
 
   return lines.length;
 };
