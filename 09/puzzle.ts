@@ -1,27 +1,3 @@
-// const printGrid = (hPos: [number, number], tPos: [number, number]) => {
-//   const maxX = Math.max(hPos[0], tPos[0], 0) + 3;
-//   const minX = Math.min(hPos[0], tPos[0], 0) - 3;
-
-//   const maxY = Math.max(hPos[1], tPos[1], 0) + 3;
-//   const minY = Math.min(hPos[1], tPos[1], 0) - 3;
-
-//   for (let y = maxY; y >= minY; y--) {
-//     let line = "";
-//     for (let x = minX; x <= maxX; x++) {
-//       if (JSON.stringify([x, y]) === JSON.stringify(hPos)) {
-//         line += "H";
-//       } else if (JSON.stringify([x, y]) === JSON.stringify(tPos)) {
-//         line += "T";
-//       } else if (x === 0 && y === 0) {
-//         line += "s";
-//       } else {
-//         line += ".";
-//       }
-//     }
-//     console.log(line);
-//   }
-//   console.log();
-// };
 import { asserts } from "/deps.ts";
 
 const printGrid = (knots: [number, number][]) => {
